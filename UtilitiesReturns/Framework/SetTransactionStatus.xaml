@@ -4,9 +4,6 @@
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property sap2010:Annotation.AnnotationText="Used to control the number of attempts of retrying the transaction processing in case of system exceptions." Name="io_RetryNumber" Type="InOutArgument(x:Int32)" />
     <x:Property sap2010:Annotation.AnnotationText="Sequential counter of transaction items." Name="io_TransactionNumber" Type="InOutArgument(x:Int32)" />
-    <x:Property sap2010:Annotation.AnnotationText="Optionally used to include additional information about the transaction item." Name="in_TransactionField1" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="Optionally used to include additional information about the transaction item." Name="in_TransactionField2" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="Used for information and logging purposes. Ideally, the ID should be unique for each transaction. " Name="in_TransactionID" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Used during transitions between states to represent exceptions other than business exceptions." Name="in_SystemException" Type="InArgument(s:Exception)" />
     <x:Property sap2010:Annotation.AnnotationText="Exception variable that is used during transitions between states and represents a situation that does not conform to the rules of the process being automated." Name="in_BusinessException" Type="InArgument(ui:BusinessRuleException)" />
   </x:Members>
@@ -120,7 +117,7 @@
                 </ui:SetTransactionStatus>
               </If.Then>
             </If>
-            <Sequence sap2010:Annotation.AnnotationText="Includes custom log fields to the log message.&#xA;They are removed after logging to prevent duplicated status messages about a single transaction." DisplayName="Log Success with additional logging fields" sap:VirtualizedContainerService.HintSize="484,372.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_9">
+            <Sequence sap2010:Annotation.AnnotationText="Includes custom log fields to the log message.&#xA;They are removed after logging to prevent duplicated status messages about a single transaction." DisplayName="Log Success with additional logging fields" sap:VirtualizedContainerService.HintSize="484,310.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_9">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -128,15 +125,6 @@
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:AddLogFields DisplayName="Add transaction log fields (Success)" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="AddLogFields_4">
-                <ui:AddLogFields.Fields>
-                  <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionStatus">Success</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionNumber">[io_TransactionNumber.ToString]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionID">[in_TransactionID]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField1">[in_TransactionField1]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField2">[in_TransactionField2]</InArgument>
-                </ui:AddLogFields.Fields>
-              </ui:AddLogFields>
               <ui:LogMessage DisplayName="Log Message (Success)" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Info" Message="[in_Config(&quot;LogMessage_Success&quot;).ToString]" />
               <ui:RemoveLogFields DisplayName="Remove transaction log fields (Success)" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="RemoveLogFields_8">
                 <ui:RemoveLogFields.Fields>
@@ -159,7 +147,7 @@
                   <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Increment transaction index and reset retries" sap:VirtualizedContainerService.HintSize="304,363.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_8">
+              <Sequence DisplayName="Increment transaction index and reset retries" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_8">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -236,7 +224,7 @@
                     </ui:SetTransactionStatus>
                   </If.Then>
                 </If>
-                <Sequence sap2010:Annotation.AnnotationText="Includes custom log fields to the log message.&#xA;They are removed after logging to prevent duplicated status messages about a single transaction." DisplayName="Log business exception with additional logging fields" sap:VirtualizedContainerService.HintSize="484,372.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                <Sequence sap2010:Annotation.AnnotationText="Includes custom log fields to the log message.&#xA;They are removed after logging to prevent duplicated status messages about a single transaction." DisplayName="Log business exception with additional logging fields" sap:VirtualizedContainerService.HintSize="484,310.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_10">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -244,15 +232,6 @@
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:AddLogFields DisplayName="Add transaction log fields (Business Exception)" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="AddLogFields_5">
-                    <ui:AddLogFields.Fields>
-                      <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionStatus">BusinessException</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionNumber">[io_TransactionNumber.ToString]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionID">[in_TransactionID]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField1">[in_TransactionField1]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField2">[in_TransactionField2]</InArgument>
-                    </ui:AddLogFields.Fields>
-                  </ui:AddLogFields>
                   <ui:LogMessage DisplayName="Log Message (Business Exception)" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Error" Message="[in_Config(&quot;LogMessage_BusinessRuleException&quot;).ToString + in_BusinessException.Message]" />
                   <ui:RemoveLogFields DisplayName="Remove transaction log fields (Business Exception)" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="RemoveLogFields_9">
                     <ui:RemoveLogFields.Fields>
@@ -327,15 +306,6 @@
                     </Sequence>
                   </If.Then>
                 </If>
-                <ui:AddLogFields DisplayName="Add transaction log fields (System Exception)" sap:VirtualizedContainerService.HintSize="484,22" sap2010:WorkflowViewState.IdRef="AddLogFields_6">
-                  <ui:AddLogFields.Fields>
-                    <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionStatus">ApplicationException</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionNumber">[io_TransactionNumber.ToString]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionID">[in_TransactionID]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField1">[in_TransactionField1]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="logF_TransactionField2">[in_TransactionField2]</InArgument>
-                  </ui:AddLogFields.Fields>
-                </ui:AddLogFields>
                 <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke RetryCurrentTransaction workflow" sap:VirtualizedContainerService.HintSize="484,86.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Framework/RetryCurrentTransaction.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="in_Config">[in_Config]</InArgument>
